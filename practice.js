@@ -26,6 +26,9 @@
   Write a function called first that takes in two parameters, an array and a callback function.
   Then invoke the callback function, passing in the first element in the array as it's argument.
 */
+function first(arr, func){
+func(arr[0])
+}
 
 // Code Here 
 
@@ -46,6 +49,9 @@ first(names, function(firstName){
   Write a function called last that takes in an array and a callback function. 
   Then invoke the callback, passing in the last element in the array as the argument.
 */
+function last(arr,func){
+  func(arr[arr.length - 1])
+}
 
 //Code Here
 
@@ -64,6 +70,9 @@ last(names, function(lastName){
   Write a function called multiply that takes in three parameters: two numbers and a callback function.  
   Invoke the callback, passing in the product of the two numbers multiplied as the argument. 
 */
+function multiply(num1,num2,func){
+  func(num1 * num2)
+}
 
 //Code Here
 
@@ -83,6 +92,13 @@ multiply(4, 3, function(answer){
   If it does, invoke the callback with true as the argument. 
   If the name does not exist, invoke the callback with false as the argument.
 */
+function contains(arr,name,func) {
+  if(arr.indexOf(name) != -1) {
+    func(true)
+  } else {
+      func(false)
+  }
+}
 
 //Code Here 
 
@@ -104,6 +120,12 @@ contains(names, 'Colt', function(result){
   Write a function called uniq that takes in an array and a callback function.
   Remove any duplicate values from the array, and invoke the callback with the modified array as an argument.
 */
+function uniq(arr,func) {
+  var temp = arr.filter(function(item,index,arr) {
+    return arr.indexOf(item) == index;
+  })
+  func(temp)
+}
 
 //Code Here
 
@@ -123,6 +145,11 @@ uniq(names, function(uniqArr){
 */
 
 //Code Here 
+function each(names,func) {
+  names.forEach(function(item,index) {
+    func(item,index)
+   })
+}
 
 // Do not edit the code below.
 each(names, function(item, indice){
@@ -135,11 +162,22 @@ each(names, function(item, indice){
 ////////// PROBLEM 7 //////////
 
 /*
-  Write a function called getUserById that takes in three parameters: an array of objects (users), an id and a callback, and searches for the user with a matching id.
+  Write a function called getUserById that takes in three parameters: an array of objects (users), 
+  an id and a callback, and searches for the user with a matching id.
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
 // Code here
+function getUserById(users,id,func) {
+  // var foundUsers = users.filter(function (user) {
+  //   return user.id == id;
+  // });
+  // func(foundUsers[0]);
+  var foundUser = users.find(function (user) {
+    return user.id == id;
+  });
+  func(foundUser);
+}
 
 // Do not edit the code below.
 var users = [
